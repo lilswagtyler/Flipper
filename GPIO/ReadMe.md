@@ -2,6 +2,10 @@
 
 Official [GPIO layout](https://miro.com/app/board/uXjVO_LaYYI=/) created by [Aleksandr Kutuzov](https://discord.com/channels/740930220399525928/765282833744265246/993107060172542012). Official documentation [is here](https://docs.flipperzero.one/gpio-and-modules)!<br>
 
+# Connect an external CC1101 to your Flipper
+
+Check out [this excellent guide](https://github.com/quen0n/flipperzero-ext-cc1101) from quen0n on the hardware and configurations needed to increase your SubGHz range!
+
 # Sentry Safe plugin pinout
 
 Plugin by [H4ckd4ddy](https://github.com/H4ckd4ddy/flipperzero-sentry-safe-plugin)
@@ -14,6 +18,8 @@ Plugin by [H4ckd4ddy](https://github.com/H4ckd4ddy/flipperzero-sentry-safe-plugi
 Plugin by [mothball187](https://github.com/mothball187/flipperzero-nrf24)  |  Affected devices from [Bastille research](https://www.bastille.net/research/vulnerabilities/mousejack/affected-devices)
 
 More info from [RogueMaster](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/tree/unleashed/applications/mousejacker) and [Unleashed](https://github.com/Eng1n33r/flipperzero-firmware/blob/dev/documentation/NRF24.md). (Both include the plugin in their firmware releases.)
+
+[Firmware and instructions](https://github.com/emptythevoid/flipperzero/tree/main/nrf24) to downgrade a receiver (thanks emptythevoid!)
 
 2/A7 on FZ goes to MOSI/6 on NRF24<br>
 3/A6 on FZ goes to MISO/7 on NRF24<br>
@@ -221,6 +227,41 @@ DATA (OUT, S, yellow wire)	2-7, 10, 12-17 (to choose from)
 ```
 https://github.com/quen0n/FipperZero-DHT-Monitor
 -----
+
+## UHF RFID YRM100 ([FAP / App here](https://github.com/frux-c/uhf_rfid))
+```
+YRM100: 1 (VCC) -> FZ: 1 (5V)
+YRM100: 2 (RXD) -> FZ: 13 or 15 (these are TX pins)
+YRM100: 3 (TXD) -> FZ: 14 or 16 (these are RX pins)
+YRM100: 4 (EN)  -> FZ: 9 (3.3V)
+YRM100: 5 (GND) -> FZ: 8 or 11 or 18 (GND)
+
+Switch between UART Pins 13/14 and 15/16 setting in:
+Flipper -> GPIO -> USB-UART Bridge -> LEFT -> UART Pins
+
+Also make sure to enable 5V in Flipper -> GPIO
+```
+![Pinout](https://github.com/UberGuidoZ/Flipper/assets/57457139/522764fb-db90-4bc9-b46b-9eb0c15f5d75)
+![Schematic](https://github.com/UberGuidoZ/Flipper/assets/57457139/0d685f28-7b80-4657-8ccd-af50da553721)
+![Front](https://github.com/UberGuidoZ/Flipper/assets/57457139/9e395d8f-92a9-488d-932a-5c7647da30dd)
+![Back](https://github.com/UberGuidoZ/Flipper/assets/57457139/44bfff6f-318a-4677-98fd-3acb6b20f722)
+
+Credit: [RekordNadoev](https://github.com/RekordNadoev) / [Issue 515](https://github.com/UberGuidoZ/Flipper/issues/515)
+-----
+
+## ServoTester ([Info/App](https://mhasbini.com/blog/servo-tester-flipper-zero.html))
+```
+VCC (none, +, VCC, red wire) -> Flipper 1 (5V)
+GND (-, GND, black/brown wire) -> Flipper 8 OR 18 (GND)
+DATA (OUT, S, yellow wire) -> Flipper 2
+
+Make sure to enable 5V in Flipper -> GPIO
+```
+![Servo](https://github.com/UberGuidoZ/Flipper/assets/57457139/f9cc7ef8-f97e-4489-9c38-f4403ae681a3)
+
+Credit: [RekordNadoev](https://github.com/RekordNadoev) / [Issue 515](https://github.com/UberGuidoZ/Flipper/issues/515)
+-----
+
 # Custom PCB's
 ## Here's some repo's with designs for custom PCB's you can order or build using a prototype board.
 
