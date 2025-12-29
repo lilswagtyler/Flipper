@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flipper Zero Command Deck</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="glow"></div>
+    <header class="hero">
+      <nav class="nav">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          Flipper Zero Command Deck
+        </div>
+        <div class="nav-actions">
+          <button class="ghost">Docs</button>
+          <button class="ghost">Community</button>
+          <button class="cta">Launch Deck</button>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="badge">Signal Ops Center</p>
+          <h1>Make your Flipper Zero feel like a starship console.</h1>
+          <p class="subtitle">
+            Pair, monitor, and trigger controlled actions from a secure web command deck. Browse
+            battle-tested scripts and drop them straight onto your Flipper in seconds.
+          </p>
+          <div class="hero-buttons">
+            <button class="cta" id="connect">Connect via Web Serial</button>
+            <button class="ghost" id="demo">Run Demo Mode</button>
+          </div>
+          <div class="status" id="status">Status: Disconnected</div>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-header">
+            <span>Live Telemetry</span>
+            <span class="pulse"></span>
+          </div>
+          <div class="panel-body" id="telemetry">
+            <div class="telemetry-row">
+              <span>Battery</span>
+              <span>--%</span>
+            </div>
+            <div class="telemetry-row">
+              <span>Mode</span>
+              <span>Standby</span>
+            </div>
+            <div class="telemetry-row">
+              <span>Channel</span>
+              <span>--- MHz</span>
+            </div>
+            <div class="telemetry-row">
+              <span>Last Script</span>
+              <span>None</span>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="cta small" id="sync">Sync Scripts</button>
+            <button class="ghost small" id="disconnect">Disconnect</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="grid">
+        <div class="card">
+          <h2>Pair &amp; Control</h2>
+          <p>
+            Use Web Serial to establish a secure session over USB. Send commands, trigger saved
+            routines, and keep a live log of every action.
+          </p>
+          <div class="command-grid">
+            <button class="command" data-command="info">Request Device Info</button>
+            <button class="command" data-command="subghz">Scan Sub-GHz</button>
+            <button class="command" data-command="infrared">Blast Infrared</button>
+            <button class="command" data-command="badusb">Run BadUSB Script</button>
+          </div>
+          <textarea
+            id="commandLog"
+            rows="6"
+            readonly
+            placeholder="Command log will appear here..."
+          ></textarea>
+        </div>
+
+        <div class="card">
+          <h2>Script Vault</h2>
+          <p>
+            Browse curated Flipper Zero payloads and utilities already stored in this repository.
+            Filter by category, preview details, and download with one tap.
+          </p>
+          <div class="filters">
+            <input type="text" id="search" placeholder="Search scripts" />
+            <select id="category">
+              <option value="all">All Categories</option>
+              <option value="badusb">BadUSB</option>
+              <option value="subghz">Sub-GHz</option>
+              <option value="nfc">NFC</option>
+              <option value="infrared">Infrared</option>
+              <option value="rfid">RFID</option>
+            </select>
+          </div>
+          <div class="script-list" id="scriptList"></div>
+        </div>
+      </section>
+
+      <section class="ops">
+        <div>
+          <h2>Ops Checklist</h2>
+          <ul>
+            <li>Use official firmware + USB serial enabled.</li>
+            <li>Connect via USB-C and approve the browser pairing prompt.</li>
+            <li>Only execute scripts you trust. Review payloads before running.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Quick Links</h2>
+          <div class="quick-links">
+            <a href="../BadUSB" class="ghost">BadUSB Arsenal</a>
+            <a href="../Sub-GHz" class="ghost">Sub-GHz Library</a>
+            <a href="../NFC" class="ghost">NFC Stash</a>
+            <a href="../Infrared" class="ghost">Infrared Vault</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built for Flipper Zero operators. Secure, fast, and a little bit ruthless.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
